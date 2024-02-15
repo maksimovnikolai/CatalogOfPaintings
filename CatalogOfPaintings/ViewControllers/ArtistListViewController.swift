@@ -1,5 +1,5 @@
 //
-//  ArtistViewController.swift
+//  ArtistListViewController.swift
 //  CatalogOfPaintings
 //
 //  Created by Nikolai Maksimov on 14.02.2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ArtistViewController: UIViewController {
+final class ArtistListViewController: UIViewController {
     
     //MARK: Private Properties
     private var tableView: UITableView!
@@ -26,7 +26,7 @@ final class ArtistViewController: UIViewController {
 }
 
 //MARK: - Private Methods
-extension ArtistViewController {
+extension ArtistListViewController {
     
     private func commonInit() {
         configureNavBar()
@@ -43,7 +43,7 @@ extension ArtistViewController {
         tableView = UITableView(frame: .zero, style: .grouped)
         view.addSubview(tableView)
         tableView.frame = view.bounds
-        tableView.register(ArtistTableViewCell.self, forCellReuseIdentifier: ArtistTableViewCell.identifier)
+        tableView.register(ArtistListCell.self, forCellReuseIdentifier: ArtistListCell.identifier)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = 170
@@ -58,28 +58,36 @@ extension ArtistViewController {
     }
 }
 
+//MARK: - Artist Table View Cell Delegate
+extension ArtistListViewController: ArtistTableViewCellDelegate {
+    
+    func buttonDidTap(_ cell: ArtistListCell, artist: Artist) {
+        let biographyVC = BiographyViewController(artist: artist)
+        present(biographyVC, animated: true)
+    }
+}
+
 //MARK: - Table View Data Source
-extension ArtistViewController: UITableViewDataSource {
+extension ArtistListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         artists.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ArtistTableViewCell.identifier, for: indexPath) as? ArtistTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ArtistListCell.identifier, for: indexPath) as? ArtistListCell else {
             return UITableViewCell()
         }
         
         let artist = artists[indexPath.row]
+        cell.delegate = self
         cell.configure(artist: artist)
-                
         return cell
     }
 }
 
-
 //MARK: - Table View Delegate
-extension ArtistViewController: UITableViewDelegate {
+extension ArtistListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
