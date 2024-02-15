@@ -11,11 +11,12 @@
 		ADB8BFF72B7D133400B740C6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB8BFF62B7D133400B740C6 /* SceneDelegate.swift */; };
 		ADB8BFFE2B7D133600B740C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADB8BFFD2B7D133600B740C6 /* Assets.xcassets */; };
 		ADB8C0012B7D133600B740C6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADB8BFFF2B7D133600B740C6 /* LaunchScreen.storyboard */; };
-		ADB8C00D2B7D13F600B740C6 /* ArtistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB8C00C2B7D13F600B740C6 /* ArtistViewController.swift */; };
+		ADB8C00D2B7D13F600B740C6 /* ArtistListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB8C00C2B7D13F600B740C6 /* ArtistListViewController.swift */; };
 		ADB8C00F2B7D253500B740C6 /* artists.json in Resources */ = {isa = PBXBuildFile; fileRef = ADB8C00E2B7D253500B740C6 /* artists.json */; };
 		ADB8C0132B7D27E800B740C6 /* Bundle+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB8C0122B7D27E800B740C6 /* Bundle+extension.swift */; };
 		ADB8C0162B7D289A00B740C6 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB8C0152B7D289A00B740C6 /* Artist.swift */; };
-		ADB8C0182B7D3E6400B740C6 /* ArtistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB8C0172B7D3E6400B740C6 /* ArtistTableViewCell.swift */; };
+		ADB8C0182B7D3E6400B740C6 /* ArtistListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB8C0172B7D3E6400B740C6 /* ArtistListCell.swift */; };
+		ADB8C01B2B7DE7A700B740C6 /* BiographyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB8C01A2B7DE7A700B740C6 /* BiographyViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,11 +26,12 @@
 		ADB8BFFD2B7D133600B740C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ADB8C0002B7D133600B740C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ADB8C0022B7D133600B740C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		ADB8C00C2B7D13F600B740C6 /* ArtistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistViewController.swift; sourceTree = "<group>"; };
+		ADB8C00C2B7D13F600B740C6 /* ArtistListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistListViewController.swift; sourceTree = "<group>"; };
 		ADB8C00E2B7D253500B740C6 /* artists.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = artists.json; sourceTree = "<group>"; };
 		ADB8C0122B7D27E800B740C6 /* Bundle+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+extension.swift"; sourceTree = "<group>"; };
 		ADB8C0152B7D289A00B740C6 /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
-		ADB8C0172B7D3E6400B740C6 /* ArtistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistTableViewCell.swift; sourceTree = "<group>"; };
+		ADB8C0172B7D3E6400B740C6 /* ArtistListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistListCell.swift; sourceTree = "<group>"; };
+		ADB8C01A2B7DE7A700B740C6 /* BiographyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiographyViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +105,8 @@
 		ADB8C00B2B7D13B700B740C6 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				ADB8C00C2B7D13F600B740C6 /* ArtistViewController.swift */,
+				ADB8C00C2B7D13F600B740C6 /* ArtistListViewController.swift */,
+				ADB8C01A2B7DE7A700B740C6 /* BiographyViewController.swift */,
 				ADB8C0192B7D484D00B740C6 /* Cell */,
 			);
 			path = ViewControllers;
@@ -135,7 +138,7 @@
 		ADB8C0192B7D484D00B740C6 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				ADB8C0172B7D3E6400B740C6 /* ArtistTableViewCell.swift */,
+				ADB8C0172B7D3E6400B740C6 /* ArtistListCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -211,11 +214,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ADB8C00D2B7D13F600B740C6 /* ArtistViewController.swift in Sources */,
+				ADB8C01B2B7DE7A700B740C6 /* BiographyViewController.swift in Sources */,
+				ADB8C00D2B7D13F600B740C6 /* ArtistListViewController.swift in Sources */,
 				ADB8BFF52B7D133400B740C6 /* AppDelegate.swift in Sources */,
 				ADB8BFF72B7D133400B740C6 /* SceneDelegate.swift in Sources */,
 				ADB8C0132B7D27E800B740C6 /* Bundle+extension.swift in Sources */,
-				ADB8C0182B7D3E6400B740C6 /* ArtistTableViewCell.swift in Sources */,
+				ADB8C0182B7D3E6400B740C6 /* ArtistListCell.swift in Sources */,
 				ADB8C0162B7D289A00B740C6 /* Artist.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
