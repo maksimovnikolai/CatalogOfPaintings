@@ -11,11 +11,23 @@ final class ArtistListViewController: UIViewController {
     
     //MARK: Private Properties
     private var tableView: UITableView!
+    private let searchController = UISearchController(searchResultsController: nil)
     
     private var artists: [Artist] = [] {
         didSet {
             tableView.reloadData()
         }
+    }
+    
+    private var filteredArtists: [Artist] = []
+    
+    private var searchBarIsEmpty: Bool {
+        guard let text = searchController.searchBar.text else { return false }
+        return text.isEmpty
+    }
+    
+    private var isFiltering: Bool {
+        return searchController.isActive && !searchBarIsEmpty
     }
     
     //MARK: Life Cycle
@@ -37,12 +49,24 @@ extension ArtistListViewController {
     private func configureNavBar() {
         navigationItem.title = "Artists"
         navigationController?.navigationBar.prefersLargeTitles = true
+        setupSearchController()
+    }
+    
+    private func setupSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.placeholder = "Search"
+        
+        navigationItem.searchController = searchController
+        definesPresentationContext = false
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
     
     private func configureTableView() {
-        tableView = UITableView(frame: .zero, style: .grouped)
+        tableView = UITableView(frame: view.bounds, style: .grouped)
+        tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.addSubview(tableView)
-        tableView.frame = view.bounds
         tableView.register(ArtistListTableViewCell.self, forCellReuseIdentifier: ArtistListTableViewCell.identifier)
         tableView.dataSource = self
         tableView.delegate = self
@@ -55,6 +79,19 @@ extension ArtistListViewController {
         } catch {
             print("error: \(error)")
         }
+    }
+}
+
+//MARK: - UISearchResultsUpdating
+extension ArtistListViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text ?? "")
+    }
+    
+    private func filterContentForSearchText(_ searchText: String) {
+        filteredArtists = artists.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+        tableView.reloadData()
     }
 }
 
@@ -71,7 +108,7 @@ extension ArtistListViewController: ArtistTableViewCellDelegate {
 extension ArtistListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        artists.count
+        isFiltering ? filteredArtists.count : artists.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -79,7 +116,7 @@ extension ArtistListViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        let artist = artists[indexPath.row]
+        let artist = isFiltering ? filteredArtists[indexPath.row] : artists[indexPath.row]
         cell.delegate = self
         cell.configure(artist: artist)
         return cell
@@ -95,7 +132,7 @@ extension ArtistListViewController: UITableViewDelegate {
     }
     
     private func showArtistPaintings(at indexPath: IndexPath) {
-        let artist = artists[indexPath.row]
+        let artist = isFiltering ? filteredArtists[indexPath.row] : artists[indexPath.row]
         let detailVC = DetailViewController(artist: artist)
         navigationController?.pushViewController(detailVC, animated: true)
     }
