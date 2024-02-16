@@ -79,7 +79,6 @@ extension DetailViewController {
         return layout
     }
     
-    
     private func configureDataSource() {
         
         dataSource = UICollectionViewDiffableDataSource<Section, Work>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
@@ -104,15 +103,14 @@ extension DetailViewController {
 //MARK: - DetailCollectionViewCellDelegate
 extension DetailViewController: DetailCollectionViewCellDelegate {
     
-    func setupTapGesture(_ cell: DetailCollectionViewCell, gesture: UITapGestureRecognizer, to imageView: UIImageView) {
-        let newImageView = UIImageView(image: imageView.image)
-        newImageView.frame = UIScreen.main.bounds
-        newImageView.contentMode = .scaleAspectFit
-        newImageView.isUserInteractionEnabled = true
+    func setupTapGesture(_ cell: DetailCollectionViewCell, gesture: UITapGestureRecognizer, to imageView: UIImageView, work: Work) {
+        let newView = DetailZoomView(image: imageView.image ?? UIImage(), title: work.title, info: work.info)
+        newView.frame = UIScreen.main.bounds
+        newView.isUserInteractionEnabled = true
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissFullScreenRecognizer))
-        newImageView.addGestureRecognizer(tap)
-        view.addSubview(newImageView)
+        newView.addGestureRecognizer(tap)
+        view.addSubview(newView)
         collectionView.isHidden = true
         navigationController?.isNavigationBarHidden = true
         tabBarController?.tabBar.isHidden = true

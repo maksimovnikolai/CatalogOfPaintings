@@ -8,7 +8,7 @@
 import UIKit
 
 protocol DetailCollectionViewCellDelegate: AnyObject {
-    func setupTapGesture(_ cell: DetailCollectionViewCell, gesture: UITapGestureRecognizer, to imageView: UIImageView)
+    func setupTapGesture(_ cell: DetailCollectionViewCell, gesture: UITapGestureRecognizer, to imageView: UIImageView, work: Work)
 }
 
 final class DetailCollectionViewCell: UICollectionViewCell {
@@ -83,6 +83,6 @@ extension DetailCollectionViewCell {
     
     @objc
     private func imageTapped(_ sender: UITapGestureRecognizer) {
-        delegate?.setupTapGesture(self, gesture: sender, to: paintingImage)
+        delegate?.setupTapGesture(self, gesture: sender, to: paintingImage, work: work)
     }
 }

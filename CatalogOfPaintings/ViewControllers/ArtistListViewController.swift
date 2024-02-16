@@ -15,7 +15,7 @@ final class ArtistListViewController: UIViewController {
     
     private var artists: [Artist] = [] {
         didSet {
-            tableView.reloadData()
+            self.tableView.reloadData()
         }
     }
     

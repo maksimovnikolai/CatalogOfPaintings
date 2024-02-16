@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD49C4AD2B7FEB2900960471 /* DetailZoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD49C4AC2B7FEB2900960471 /* DetailZoomView.swift */; };
 		ADB8BFF52B7D133400B740C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB8BFF42B7D133400B740C6 /* AppDelegate.swift */; };
 		ADB8BFF72B7D133400B740C6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB8BFF62B7D133400B740C6 /* SceneDelegate.swift */; };
 		ADB8BFFE2B7D133600B740C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADB8BFFD2B7D133600B740C6 /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AD49C4AC2B7FEB2900960471 /* DetailZoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailZoomView.swift; sourceTree = "<group>"; };
 		ADB8BFF12B7D133400B740C6 /* CatalogOfPaintings.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatalogOfPaintings.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADB8BFF42B7D133400B740C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ADB8BFF62B7D133400B740C6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				ADB8C00C2B7D13F600B740C6 /* ArtistListViewController.swift */,
 				ADB8C01A2B7DE7A700B740C6 /* BiographyViewController.swift */,
 				ADB8C0212B7E4BE300B740C6 /* DetailViewController.swift */,
+				AD49C4AC2B7FEB2900960471 /* DetailZoomView.swift */,
 				ADB8C0192B7D484D00B740C6 /* Cell */,
 			);
 			path = ViewControllers;
@@ -220,6 +223,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD49C4AD2B7FEB2900960471 /* DetailZoomView.swift in Sources */,
 				ADB8C01B2B7DE7A700B740C6 /* BiographyViewController.swift in Sources */,
 				ADB8C00D2B7D13F600B740C6 /* ArtistListViewController.swift in Sources */,
 				ADB8BFF52B7D133400B740C6 /* AppDelegate.swift in Sources */,

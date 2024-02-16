@@ -7,32 +7,13 @@
 
 import UIKit
 
-final class DetailZoomView: UIScrollView {
+final class DetailZoomView: UIView {
     
     //MARK: Private Properties
-    private lazy var paintingImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleToFill
-        return imageView
-    }()
-    
+    private lazy var paintingImageView = makeImageView()
     private lazy var titleLabel = makeLabelWith(text: "Name", font: .boldSystemFont(ofSize: 22), alignment: .center)
     private lazy var infoLabel = makeLabelWith(text: "Info", font: .systemFont(ofSize: 18))
-    
-    private lazy var stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        //        stackView.alignment = .center
-        stackView.distribution = .equalSpacing
-        stackView.spacing = 80
-        stackView.addArrangedSubview(titleLabel)
-        stackView.addArrangedSubview(paintingImageView)
-        stackView.addArrangedSubview(infoLabel)
-        return stackView
-    }()
-    
-    private lazy var contentView = UIView()
-
+    private lazy var stackView = makeStackView()
     
     //MARK: - Init
     init(image: UIImage, title: String, info: String) {
@@ -40,9 +21,7 @@ final class DetailZoomView: UIScrollView {
         self.paintingImageView.image = image
         self.titleLabel.text = title
         self.infoLabel.text = info
-        
-        setupContentView()
-        configureStackView()
+        setupStackViewConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -62,27 +41,34 @@ extension DetailZoomView {
         return label
     }
     
-    private func setupContentView() {
-        addSubview(contentView)
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            contentView.topAnchor.constraint(equalTo: topAnchor),
-            contentView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            
-            contentView.widthAnchor.constraint(equalTo: widthAnchor)
-        ])
+    private func makeImageView() -> UIImageView {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        return imageView
     }
     
-    private func configureStackView() {
-        contentView.addSubview(stackView)
+    private func makeStackView() -> UIStackView {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.distribution = .fill
+        stackView.spacing = 10
+        stackView.addArrangedSubview(titleLabel)
+        stackView.addArrangedSubview(paintingImageView)
+        stackView.addArrangedSubview(infoLabel)
+        return stackView
+    }
+}
+
+//MARK: - Constraints
+extension DetailZoomView {
+    
+    private func setupStackViewConstraints() {
+        addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            stackView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            stackView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
         ])
     }
 }
