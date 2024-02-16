@@ -42,6 +42,7 @@ final class DetailViewController: UIViewController {
 extension DetailViewController {
     
     private func commonInit() {
+        view.backgroundColor = .systemBackground
         title = "Paintings"
         configureCollectionView()
         configureDataSource()
@@ -89,6 +90,7 @@ extension DetailViewController {
             
             let work = self.artist.works[indexPath.item]
             cell.configure(work: work)
+            cell.delegate = self
             return cell
         })
         
@@ -99,4 +101,28 @@ extension DetailViewController {
     }
 }
 
-
+//MARK: - DetailCollectionViewCellDelegate
+extension DetailViewController: DetailCollectionViewCellDelegate {
+    
+    func setupTapGesture(_ cell: DetailCollectionViewCell, gesture: UITapGestureRecognizer, to imageView: UIImageView) {
+        let newImageView = UIImageView(image: imageView.image)
+        newImageView.frame = UIScreen.main.bounds
+        newImageView.contentMode = .scaleAspectFit
+        newImageView.isUserInteractionEnabled = true
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissFullScreenRecognizer))
+        newImageView.addGestureRecognizer(tap)
+        view.addSubview(newImageView)
+        collectionView.isHidden = true
+        navigationController?.isNavigationBarHidden = true
+        tabBarController?.tabBar.isHidden = true
+    }
+    
+    @objc
+    private func dismissFullScreenRecognizer(_ sender: UITapGestureRecognizer) {
+        navigationController?.isNavigationBarHidden = false
+        tabBarController?.tabBar.isHidden = false
+        collectionView.isHidden = false
+        sender.view?.removeFromSuperview()
+    }
+}

@@ -7,10 +7,16 @@
 
 import UIKit
 
+protocol DetailCollectionViewCellDelegate: AnyObject {
+    func setupTapGesture(_ cell: DetailCollectionViewCell, gesture: UITapGestureRecognizer, to imageView: UIImageView)
+}
+
 final class DetailCollectionViewCell: UICollectionViewCell {
     
     // Identifier
     static let identifier = "DetailViewCell"
+    
+    weak var delegate: DetailCollectionViewCellDelegate?
     
     //MARK: Private Properties
     private var work: Work!
@@ -45,6 +51,7 @@ extension DetailCollectionViewCell {
     
     private func commonInit() {
         setupArtistImageConstraints()
+        tapImage()
     }
 }
 
@@ -60,5 +67,22 @@ extension DetailCollectionViewCell {
             paintingImage.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
             paintingImage.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor),
         ])
+    }
+}
+
+//MARK: - UITapGestureRecognizer
+extension DetailCollectionViewCell {
+    
+    private func tapImage() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+        tapGesture.numberOfTapsRequired = 1
+        tapGesture.numberOfTouchesRequired = 1
+        paintingImage.addGestureRecognizer(tapGesture)
+        paintingImage.isUserInteractionEnabled = true
+    }
+    
+    @objc
+    private func imageTapped(_ sender: UITapGestureRecognizer) {
+        delegate?.setupTapGesture(self, gesture: sender, to: paintingImage)
     }
 }
