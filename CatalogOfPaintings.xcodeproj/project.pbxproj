@@ -15,8 +15,10 @@
 		ADB8C00F2B7D253500B740C6 /* artists.json in Resources */ = {isa = PBXBuildFile; fileRef = ADB8C00E2B7D253500B740C6 /* artists.json */; };
 		ADB8C0132B7D27E800B740C6 /* Bundle+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB8C0122B7D27E800B740C6 /* Bundle+extension.swift */; };
 		ADB8C0162B7D289A00B740C6 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB8C0152B7D289A00B740C6 /* Artist.swift */; };
-		ADB8C0182B7D3E6400B740C6 /* ArtistListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB8C0172B7D3E6400B740C6 /* ArtistListCell.swift */; };
+		ADB8C0182B7D3E6400B740C6 /* ArtistListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB8C0172B7D3E6400B740C6 /* ArtistListTableViewCell.swift */; };
 		ADB8C01B2B7DE7A700B740C6 /* BiographyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB8C01A2B7DE7A700B740C6 /* BiographyViewController.swift */; };
+		ADB8C0222B7E4BE300B740C6 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB8C0212B7E4BE300B740C6 /* DetailViewController.swift */; };
+		ADB8C0242B7E4C8200B740C6 /* DetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB8C0232B7E4C8200B740C6 /* DetailCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,8 +32,10 @@
 		ADB8C00E2B7D253500B740C6 /* artists.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = artists.json; sourceTree = "<group>"; };
 		ADB8C0122B7D27E800B740C6 /* Bundle+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+extension.swift"; sourceTree = "<group>"; };
 		ADB8C0152B7D289A00B740C6 /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
-		ADB8C0172B7D3E6400B740C6 /* ArtistListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistListCell.swift; sourceTree = "<group>"; };
+		ADB8C0172B7D3E6400B740C6 /* ArtistListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistListTableViewCell.swift; sourceTree = "<group>"; };
 		ADB8C01A2B7DE7A700B740C6 /* BiographyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiographyViewController.swift; sourceTree = "<group>"; };
+		ADB8C0212B7E4BE300B740C6 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		ADB8C0232B7E4C8200B740C6 /* DetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +111,7 @@
 			children = (
 				ADB8C00C2B7D13F600B740C6 /* ArtistListViewController.swift */,
 				ADB8C01A2B7DE7A700B740C6 /* BiographyViewController.swift */,
+				ADB8C0212B7E4BE300B740C6 /* DetailViewController.swift */,
 				ADB8C0192B7D484D00B740C6 /* Cell */,
 			);
 			path = ViewControllers;
@@ -138,7 +143,8 @@
 		ADB8C0192B7D484D00B740C6 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				ADB8C0172B7D3E6400B740C6 /* ArtistListCell.swift */,
+				ADB8C0172B7D3E6400B740C6 /* ArtistListTableViewCell.swift */,
+				ADB8C0232B7E4C8200B740C6 /* DetailCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -219,8 +225,10 @@
 				ADB8BFF52B7D133400B740C6 /* AppDelegate.swift in Sources */,
 				ADB8BFF72B7D133400B740C6 /* SceneDelegate.swift in Sources */,
 				ADB8C0132B7D27E800B740C6 /* Bundle+extension.swift in Sources */,
-				ADB8C0182B7D3E6400B740C6 /* ArtistListCell.swift in Sources */,
+				ADB8C0182B7D3E6400B740C6 /* ArtistListTableViewCell.swift in Sources */,
+				ADB8C0242B7E4C8200B740C6 /* DetailCollectionViewCell.swift in Sources */,
 				ADB8C0162B7D289A00B740C6 /* Artist.swift in Sources */,
+				ADB8C0222B7E4BE300B740C6 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

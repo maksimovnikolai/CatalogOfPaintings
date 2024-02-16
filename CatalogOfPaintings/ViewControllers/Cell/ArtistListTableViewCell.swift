@@ -1,5 +1,5 @@
 //
-//  ArtistListCell.swift
+//  ArtistListTableViewCell.swift
 //  CatalogOfPaintings
 //
 //  Created by Nikolai Maksimov on 14.02.2024.
@@ -8,10 +8,10 @@
 import UIKit
 
 protocol ArtistTableViewCellDelegate: AnyObject {
-    func buttonDidTap(_ cell: ArtistListCell, artist: Artist)
+    func buttonDidTap(_ cell: ArtistListTableViewCell, artist: Artist)
 }
 
-final class ArtistListCell: UITableViewCell {
+final class ArtistListTableViewCell: UITableViewCell {
     
     // Identifier
     static let identifier = "ArtistTableViewCell"
@@ -82,7 +82,7 @@ final class ArtistListCell: UITableViewCell {
 }
 
 //MARK: - Private Methods
-extension ArtistListCell {
+extension ArtistListTableViewCell {
     
     private func commonInit() {
         setupArtistImageConstraints()
@@ -102,7 +102,7 @@ extension ArtistListCell {
 }
 
 //MARK: - Constraints
-extension ArtistListCell {
+extension ArtistListTableViewCell {
     
     private func setupArtistImageConstraints() {
         contentView.addSubview(artistImage)
