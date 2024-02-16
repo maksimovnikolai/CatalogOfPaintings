@@ -86,6 +86,7 @@ extension ArtistListViewController {
 extension ArtistListViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
+        searchController.searchBar.becomeFirstResponder()
         filterContentForSearchText(searchController.searchBar.text ?? "")
     }
     
