@@ -43,7 +43,7 @@ extension ArtistListViewController {
         tableView = UITableView(frame: .zero, style: .grouped)
         view.addSubview(tableView)
         tableView.frame = view.bounds
-        tableView.register(ArtistListCell.self, forCellReuseIdentifier: ArtistListCell.identifier)
+        tableView.register(ArtistListTableViewCell.self, forCellReuseIdentifier: ArtistListTableViewCell.identifier)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = 170
@@ -61,7 +61,7 @@ extension ArtistListViewController {
 //MARK: - Artist Table View Cell Delegate
 extension ArtistListViewController: ArtistTableViewCellDelegate {
     
-    func buttonDidTap(_ cell: ArtistListCell, artist: Artist) {
+    func buttonDidTap(_ cell: ArtistListTableViewCell, artist: Artist) {
         let biographyVC = BiographyViewController(artist: artist)
         present(biographyVC, animated: true)
     }
@@ -75,7 +75,7 @@ extension ArtistListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ArtistListCell.identifier, for: indexPath) as? ArtistListCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ArtistListTableViewCell.identifier, for: indexPath) as? ArtistListTableViewCell else {
             return UITableViewCell()
         }
         
@@ -91,5 +91,12 @@ extension ArtistListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        showArtistPaintings(at: indexPath)
+    }
+    
+    private func showArtistPaintings(at indexPath: IndexPath) {
+        let artist = artists[indexPath.row]
+        let detailVC = DetailViewController(artist: artist)
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }
