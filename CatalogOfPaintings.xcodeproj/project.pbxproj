@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AD49C4AD2B7FEB2900960471 /* DetailZoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD49C4AC2B7FEB2900960471 /* DetailZoomView.swift */; };
+		AD49C4AF2B80BCEC00960471 /* NewArtistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD49C4AE2B80BCEC00960471 /* NewArtistViewController.swift */; };
 		ADB8BFF52B7D133400B740C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB8BFF42B7D133400B740C6 /* AppDelegate.swift */; };
 		ADB8BFF72B7D133400B740C6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB8BFF62B7D133400B740C6 /* SceneDelegate.swift */; };
 		ADB8BFFE2B7D133600B740C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADB8BFFD2B7D133600B740C6 /* Assets.xcassets */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		AD49C4AC2B7FEB2900960471 /* DetailZoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailZoomView.swift; sourceTree = "<group>"; };
+		AD49C4AE2B80BCEC00960471 /* NewArtistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewArtistViewController.swift; sourceTree = "<group>"; };
 		ADB8BFF12B7D133400B740C6 /* CatalogOfPaintings.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatalogOfPaintings.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADB8BFF42B7D133400B740C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ADB8BFF62B7D133400B740C6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				ADB8C00C2B7D13F600B740C6 /* ArtistListViewController.swift */,
+				AD49C4AE2B80BCEC00960471 /* NewArtistViewController.swift */,
 				ADB8C01A2B7DE7A700B740C6 /* BiographyViewController.swift */,
 				ADB8C0212B7E4BE300B740C6 /* DetailViewController.swift */,
 				AD49C4AC2B7FEB2900960471 /* DetailZoomView.swift */,
@@ -231,6 +234,7 @@
 				ADB8C0132B7D27E800B740C6 /* Bundle+extension.swift in Sources */,
 				ADB8C0182B7D3E6400B740C6 /* ArtistListTableViewCell.swift in Sources */,
 				ADB8C0242B7E4C8200B740C6 /* DetailCollectionViewCell.swift in Sources */,
+				AD49C4AF2B80BCEC00960471 /* NewArtistViewController.swift in Sources */,
 				ADB8C0162B7D289A00B740C6 /* Artist.swift in Sources */,
 				ADB8C0222B7E4BE300B740C6 /* DetailViewController.swift in Sources */,
 			);
