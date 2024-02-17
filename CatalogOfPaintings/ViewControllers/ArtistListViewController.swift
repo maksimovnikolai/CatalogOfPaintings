@@ -49,6 +49,7 @@ extension ArtistListViewController {
     private func configureNavBar() {
         navigationItem.title = "Artists"
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.rightBarButtonItem = makeAddBarButtonItem()
         setupSearchController()
     }
     
@@ -79,6 +80,20 @@ extension ArtistListViewController {
         } catch {
             print("error: \(error)")
         }
+    }
+}
+
+//MARK: Add New Artist Logic
+extension ArtistListViewController {
+    
+    private func makeAddBarButtonItem() -> UIBarButtonItem {
+        UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(showAddVC))
+    }
+    
+    @objc
+    private func showAddVC() {
+        let newArtistVC = NewArtistViewController()
+        navigationController?.pushViewController(newArtistVC, animated: true)
     }
 }
 
