@@ -31,10 +31,29 @@ final class NewArtistViewController: UIViewController {
 extension NewArtistViewController {
     
     private func commonInit() {
+        navigationItem.largeTitleDisplayMode = .never
         setupArtistImageConstraints()
         setupCustomConstraints()
         setupStackViewConstraints()
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
+    }
+}
+
+//MARK: - UITextFieldDelegate
+extension NewArtistViewController: UITextFieldDelegate {
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.becomeFirstResponder()
+    }
+}
+
+//MARK: - UITextViewDelegate
+extension NewArtistViewController: UITextViewDelegate {
+    
 }
 
 //MARK: - Constraints
@@ -45,7 +64,7 @@ extension NewArtistViewController {
         let imageSize: CGFloat = UIScreen.main.bounds.size.width / 1.5
         artistImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            artistImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            artistImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             artistImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             artistImageView.widthAnchor.constraint(equalToConstant: imageSize),
             artistImageView.heightAnchor.constraint(equalToConstant: imageSize),
@@ -56,10 +75,10 @@ extension NewArtistViewController {
         view.addSubview(customView)
         customView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            customView.topAnchor.constraint(equalTo: artistImageView.bottomAnchor, constant: 30),
+            customView.heightAnchor.constraint(equalToConstant: (UIScreen.main.bounds.height / 2) - 20),
             customView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             customView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            customView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            customView.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor),
         ])
     }
     
@@ -70,7 +89,7 @@ extension NewArtistViewController {
             stackView.topAnchor.constraint(equalTo: customView.topAnchor, constant: 30),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            stackView.bottomAnchor.constraint(equalTo: customView.safeAreaLayoutGuide.bottomAnchor, constant: -10),
         ])
     }
 }
@@ -81,13 +100,16 @@ extension NewArtistViewController {
     private func makeTextField(phText: String) -> UITextField {
         let tf = UITextField()
         tf.borderStyle = .roundedRect
+        tf.delegate = self
         tf.placeholder = phText
+        tf.backgroundColor = .systemGray4
         return tf
     }
     
     private func makeArtistImageView() -> UIImageView {
         let imageView = UIImageView()
         imageView.image = .init(systemName: "person.crop.circle.badge.plus")
+//        imageView.backgroundColor = .gray
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = imageView.frame.width / 2
@@ -106,8 +128,8 @@ extension NewArtistViewController {
     
     private func makeTextView() -> UITextView {
         let textView = UITextView()
-        textView.backgroundColor = .systemGray
-
+        textView.backgroundColor = .systemGray4
+        textView.delegate = self
         textView.layer.cornerRadius = 5
         textView.font = .systemFont(ofSize: 16)
         return textView
