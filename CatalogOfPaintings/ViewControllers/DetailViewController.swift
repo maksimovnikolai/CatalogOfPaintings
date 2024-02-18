@@ -21,7 +21,7 @@ final class DetailViewController: UIViewController {
         case printings
     }
     
-   //MARK: Init
+    //MARK: Init
     init(artist: Artist) {
         self.artist = artist
         super.init(nibName: nil, bundle: nil)
@@ -52,6 +52,7 @@ extension DetailViewController {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.backgroundColor = .systemBackground
+        collectionView.delegate = self
         collectionView.register(DetailCollectionViewCell.self, forCellWithReuseIdentifier: DetailCollectionViewCell.identifier)
         view.addSubview(collectionView)
     }
@@ -81,15 +82,12 @@ extension DetailViewController {
     
     private func configureDataSource() {
         
-        dataSource = UICollectionViewDiffableDataSource<Section, Work>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
+        dataSource = UICollectionViewDiffableDataSource<Section, Work>(collectionView: collectionView, cellProvider: { collectionView, indexPath, item in
             
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailCollectionViewCell.identifier, for: indexPath) as? DetailCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            
-            let work = self.artist.works[indexPath.item]
-            cell.configure(work: work)
-            cell.delegate = self
+            cell.configure(work: item)
             return cell
         })
         
@@ -100,17 +98,23 @@ extension DetailViewController {
     }
 }
 
-//MARK: - DetailCollectionViewCellDelegate
-extension DetailViewController: DetailCollectionViewCellDelegate {
+//MARK: - UICollectionViewDelegate
+extension DetailViewController: UICollectionViewDelegate {
     
-    func setupTapGesture(_ cell: DetailCollectionViewCell, gesture: UITapGestureRecognizer, to imageView: UIImageView, work: Work) {
-        let newView = DetailZoomView(image: imageView.image ?? UIImage(), title: work.title, info: work.info)
-        newView.frame = UIScreen.main.bounds
-        newView.isUserInteractionEnabled = true
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let snapshot = dataSource.snapshot()
+        let work = snapshot.itemIdentifiers[indexPath.item]
+        let newView = DetailZoomView(with: work)
+        setupGesture(to: newView)
+    }
+    
+    private func setupGesture(to zoomView: UIView) {
+        zoomView.frame = UIScreen.main.bounds
+        zoomView.isUserInteractionEnabled = true
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissFullScreenRecognizer))
-        newView.addGestureRecognizer(tap)
-        view.addSubview(newView)
+        zoomView.addGestureRecognizer(tap)
+        view.addSubview(zoomView)
         collectionView.isHidden = true
         navigationController?.isNavigationBarHidden = true
         tabBarController?.tabBar.isHidden = true
