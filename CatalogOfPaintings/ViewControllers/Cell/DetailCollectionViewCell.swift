@@ -7,20 +7,12 @@
 
 import UIKit
 
-protocol DetailCollectionViewCellDelegate: AnyObject {
-    func setupTapGesture(_ cell: DetailCollectionViewCell, gesture: UITapGestureRecognizer, to imageView: UIImageView, work: Work)
-}
-
 final class DetailCollectionViewCell: UICollectionViewCell {
     
     // Identifier
     static let identifier = "DetailViewCell"
     
-    weak var delegate: DetailCollectionViewCellDelegate?
-    
     //MARK: Private Properties
-    private var work: Work!
-    
     private lazy var paintingImage: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 10
@@ -41,7 +33,6 @@ final class DetailCollectionViewCell: UICollectionViewCell {
     
     //MARK: Configure Cell
     func configure(work: Work) {
-        self.work = work
         paintingImage.image = UIImage(named: work.image)
     }
 }
@@ -51,7 +42,6 @@ extension DetailCollectionViewCell {
     
     private func commonInit() {
         setupArtistImageConstraints()
-        tapImage()
     }
 }
 
@@ -59,7 +49,7 @@ extension DetailCollectionViewCell {
 extension DetailCollectionViewCell {
     
     private func setupArtistImageConstraints() {
-        contentView.addSubview(paintingImage)
+        addSubview(paintingImage)
         paintingImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             paintingImage.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
@@ -67,22 +57,5 @@ extension DetailCollectionViewCell {
             paintingImage.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
             paintingImage.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor),
         ])
-    }
-}
-
-//MARK: - UITapGestureRecognizer
-extension DetailCollectionViewCell {
-    
-    private func tapImage() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
-        tapGesture.numberOfTapsRequired = 1
-        tapGesture.numberOfTouchesRequired = 1
-        paintingImage.addGestureRecognizer(tapGesture)
-        paintingImage.isUserInteractionEnabled = true
-    }
-    
-    @objc
-    private func imageTapped(_ sender: UITapGestureRecognizer) {
-        delegate?.setupTapGesture(self, gesture: sender, to: paintingImage, work: work)
     }
 }
